@@ -40,7 +40,7 @@ public class MyHashTable<K, V> {
         HashNode<K, V> current = chainArray[index];
 
         while(current != null) {
-            if (current.key.equals(key)) {
+            if(current.key.equals(key)) {
                 current.value = value;
                 return;
             }
@@ -59,7 +59,7 @@ public class MyHashTable<K, V> {
         HashNode<K, V> current = chainArray[index];
 
         while(current != null) {
-            if (current.key.equals(key)) {
+            if(current.key.equals(key)) {
                 return current.value;
             }
             current = current.next;
@@ -75,8 +75,8 @@ public class MyHashTable<K, V> {
         HashNode<K, V> previous = null;
 
         while(current != null) {
-            if (current.key.equals(key)) {
-                if (previous == null) {
+            if(current.key.equals(key)) {
+                if(previous == null) {
                     chainArray[index] = current.next;
                 }
                 else {
@@ -94,11 +94,11 @@ public class MyHashTable<K, V> {
     }
 
     public boolean contains(V value) {
-        for (int i = 0; i < M; i++) {
+        for(int i = 0; i < M; i++) {
             HashNode<K, V> current = chainArray[i];
 
             while(current != null) {
-                if (current.value.equals(value)) {
+                if(current.value.equals(value)) {
                     return true;
                 }
                 current = current.next;
@@ -108,7 +108,7 @@ public class MyHashTable<K, V> {
     }
 
     public K getKey(V value) {
-        for (int i = 0; i < M; i++) {
+        for(int i = 0; i < M; i++) {
             HashNode<K, V> current = chainArray[i];
 
             while(current != null) {
@@ -120,4 +120,23 @@ public class MyHashTable<K, V> {
         }
         return null;
     }
+
+    public void printBucketSizes() {
+        for(int i = 0; i < M; i++) {
+            int count = 0;
+
+            HashNode<K, V> current = chainArray[i];
+
+            while(current != null) {
+                count++;
+                current = current.next;
+            }
+            System.out.println("Bucket " + i + ": " + count);
+        }
+    }
+
+    public int size() {
+        return size;
+    }
+
 }
